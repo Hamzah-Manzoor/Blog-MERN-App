@@ -5,6 +5,7 @@ import Home from "./components/home/Home";
 import Header from "./components/header/Header";
 import CreatePost from "./components/create/createPost";
 import DataProvider from './context/DataProvider';
+import Update from './components/create/Update';
 import DetailView from './components/details/DetailView';
 import { BrowserRouter, Routes, Route, Outlet, Navigate } from 'react-router-dom';
 
@@ -40,6 +41,10 @@ function App() {
 
             <Route path='/details/:id' element={<PrivateRoute isAuthenticated={isAuthenticated} />} >
               <Route path='/details/:id' element={<DetailView />} />
+            </Route>
+
+            <Route path='/update/:id' element={<PrivateRoute isAuthenticated={isAuthenticated} />} >
+              <Route path='/update/:id' element={<Update />} />
             </Route>
 
           </Routes>
