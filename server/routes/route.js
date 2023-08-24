@@ -23,7 +23,7 @@ router.post('/signup', singupUser);
 // router.post('/token', createNewToken);
 
 router.post('/create', authenticateToken, createPost);
-// router.put('/update/:id', authenticateToken, updatePost);
+router.put('/update/:id', authenticateToken, updatePost);
 // router.delete('/delete/:id', authenticateToken, deletePost);
 
 router.get('/post/:id', authenticateToken, getPost);
