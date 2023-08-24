@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 import { API_NOTIFICATION_MESSAGES, SERVICE_URLS } from '../constants/config';
-// import { getAccessToken, getRefreshToken, setAccessToken, getType } from '../utils/common-utils';
+import { getAccessToken, getRefreshToken, setAccessToken, getType } from '../components/utils/common-utils';
 
 const API_URL = 'http://localhost:4000';
 
@@ -15,11 +15,11 @@ const axiosInstance = axios.create({
 
 axiosInstance.interceptors.request.use(
     function(config) {
-        // if (config.TYPE.params) {
-        //     config.params = config.TYPE.params
-        // } else if (config.TYPE.query) {
-        //     config.url = config.url + '/' + config.TYPE.query;
-        // }
+        if (config.TYPE.params) {
+            config.params = config.TYPE.params
+        } else if (config.TYPE.query) {
+            config.url = config.url + '/' + config.TYPE.query;
+        }
         return config;
     },
     function(error) {
@@ -115,10 +115,10 @@ for (const [key, value] of Object.entries(SERVICE_URLS)) {
             url: value.url,
             data: value.method === 'DELETE' ? '' : body,
             responseType: value.responseType,
-            // headers: {
-            //     authorization: getAccessToken(),
-            // },
-            // TYPE: getType(value, body),
+            headers: {
+                authorization: getAccessToken(),
+            },
+            TYPE: getType(value, body),
         });
 }
 
