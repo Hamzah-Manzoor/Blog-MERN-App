@@ -6,7 +6,7 @@ import { newComment, getComments, getComment, deleteComment } from '../controlle
 
 
 
-import { singupUser, loginUser } from '../controller/user-controller.js';
+import { singupUser, loginUser, updateUser } from '../controller/user-controller.js';
 // import { loginUser, singupUser, logoutUser } from '../controller/user-controller.js';
 
 
@@ -18,6 +18,7 @@ const router = express.Router();
 
 router.post('/login', loginUser);
 router.post('/signup', singupUser);
+router.post('/updateUser', updateUser);
 // router.post('/logout', logoutUser);
 
 // router.post('/token', createNewToken);

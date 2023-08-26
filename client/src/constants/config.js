@@ -24,7 +24,7 @@ export const API_NOTIFICATION_MESSAGES = {
 export const SERVICE_URLS = {
     userLogin: { url: '/login', method: 'POST' },
     userSignup: { url: '/signup', method: 'POST' },
-    
+    updateUser: { url: '/updateUser', method: 'POST' },    
     // getRefreshToken: { url: '/token', method: 'POST' },
     uploadFile: { url: '/file/upload', method: 'POST' },
 

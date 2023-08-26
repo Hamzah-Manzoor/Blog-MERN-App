@@ -5,6 +5,7 @@ export const createPost = async (request, response) => {
     try {
         const post = await new Post(request.body);
         post.email = request.user.email;
+        post.name = request.user.name;
         post.save();
 
         response.status(200).json('Post saved successfully');

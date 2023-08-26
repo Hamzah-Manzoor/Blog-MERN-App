@@ -101,7 +101,8 @@ const DetailView = () => {
 
             <Author>
                 <a href={`mailto:${post.email}`} style={{ textDecoration: 'none', color: 'inherit' }}>
-                    <Typography>Author: <span style={{fontWeight: 600}}>{post.email}</span></Typography>
+                    <Typography>Author: <span style={{fontWeight: 600}}>{post.name}</span></Typography>
+                    <Typography>Email: <span style={{fontWeight: 600}}>{post.email}</span></Typography>
                 </a>
                 <Typography style={{marginLeft: 'auto'}}>{new Date(post.createdDate).toDateString()}</Typography>
             </Author>

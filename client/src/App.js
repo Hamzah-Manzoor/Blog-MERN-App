@@ -7,7 +7,7 @@ import CreatePost from "./components/create/CreatePost";
 import DataProvider from './context/DataProvider';
 import Update from './components/create/Update';
 import DetailView from './components/details/DetailView';
-import About from './components/about/About';
+import EditProfile from './components/editProfile/EditProfile';
 import Contact from './components/contact/Contact';
 import { BrowserRouter, Routes, Route, Outlet, Navigate } from 'react-router-dom';
 
@@ -49,8 +49,8 @@ function App() {
               <Route path='/update/:id' element={<Update />} />
             </Route>
 
-            <Route path='/about' element={<PrivateRoute isAuthenticated={isAuthenticated} />} >
-              <Route path='/about' element={<About />} />
+            <Route path='/editProfile' element={<PrivateRoute isAuthenticated={isAuthenticated} />} >
+              <Route path='/editProfile' element={<EditProfile />} />
             </Route>
 
             <Route path='/contact' element={<PrivateRoute isAuthenticated={isAuthenticated} />} >

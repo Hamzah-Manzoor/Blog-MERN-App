@@ -77,7 +77,7 @@ const CreatePost = () => {
         }
         getImage();
         post.categories = location.search?.split('=')[1] || 'All';
-        post.username = account.username;
+        post.email = account.email;
     }, [file])
 
     const savePost = async () => {
