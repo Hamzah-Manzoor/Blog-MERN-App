@@ -3,7 +3,7 @@ import { useState } from 'react';
 import Login from "./components/account/Login";
 import Home from "./components/home/Home";
 import Header from "./components/header/Header";
-import CreatePost from "./components/create/createPost";
+import CreatePost from "./components/create/CreatePost";
 import DataProvider from './context/DataProvider';
 import Update from './components/create/Update';
 import DetailView from './components/details/DetailView';

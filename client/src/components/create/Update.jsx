@@ -119,7 +119,7 @@ const Update = () => {
             </StyledFormControl>
 
             <StyledTextArea
-                rowsMin={5}
+                rows={5}
                 placeholder="Tell your story..."
                 name='description'
                 onChange={(e) => handleChange(e)} 

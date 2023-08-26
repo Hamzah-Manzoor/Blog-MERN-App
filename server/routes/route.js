@@ -2,7 +2,7 @@ import express from 'express';
 
 import { createPost, updatePost, deletePost, getPost, getAllPosts } from '../controller/post-controller.js';
 import { uploadImage, getImage } from '../controller/image-controller.js';
-import { newComment, getComments, deleteComment } from '../controller/comment-controller.js';
+import { newComment, getComments, getComment, deleteComment } from '../controller/comment-controller.js';
 
 
 
@@ -33,7 +33,8 @@ router.post('/file/upload', upload.single('file'), uploadImage);
 // router.get('/file/:filename', getImage);
 
 router.post('/comment/new', authenticateToken, newComment);
-router.get('/comments/:id', authenticateToken, getComments);
+router.get('/comment/:id', authenticateToken, getComments);
+router.get('/comment', authenticateToken, getComment);
 router.delete('/comment/delete/:id', authenticateToken, deleteComment);
 
 export default router;
