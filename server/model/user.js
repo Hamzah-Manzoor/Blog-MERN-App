@@ -13,7 +13,15 @@ const userSchema = mongoose.Schema({
     password: {
         type: String,
         required: true
-    }
+    },
+    education: {
+        type: String,
+        required: false
+    },
+    interests: {
+        type: String,
+        required: false
+    },
 });
 
 

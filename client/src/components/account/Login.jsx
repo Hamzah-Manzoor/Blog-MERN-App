@@ -73,6 +73,8 @@ const signupValues = {
     name: '',
     email: '',
     password: '',
+    education: '',
+    interests: '',
 };
 
 
@@ -105,7 +107,7 @@ const Login = ({ isUserAuthenticated }) => {
 
         sessionStorage.setItem('accessToken', `Bearer ${response.data.accessToken}`);
         sessionStorage.setItem('refreshToken', `Bearer ${response.data.refreshToken}`);
-        setAccount({ name: response.data.name, email: response.data.email });
+        setAccount({ _id: response.data._id, name: response.data.name, email: response.data.email, password: response.data.password, education: response.data.education, interests: response.data.interests });
         
         isUserAuthenticated(true)
     //     setLogin(loginInitialValues);
@@ -137,8 +139,8 @@ const Login = ({ isUserAuthenticated }) => {
           account === 'login' ?
         
           <Wrapper>
-            <TextField variant="standard" value={login.email} onChange={(e) => onLoginChange(e)} name="email" label="Enter Email"/>
-            <TextField variant="standard" value={login.password} onChange={(e) => onLoginChange(e)} name="password" label="Enter Password"/>
+            <TextField variant="standard" value={login.email} required onChange={(e) => onLoginChange(e)} name="email" label="Enter Email"/>
+            <TextField variant="standard" value={login.password} required onChange={(e) => onLoginChange(e)} name="password" label="Enter Password"/>
 
             { error && <Error>{error}</Error>}
 
@@ -148,9 +150,9 @@ const Login = ({ isUserAuthenticated }) => {
           </Wrapper>
         :
           <Wrapper>
-            <TextField variant="standard" onChange={(e) => onSignupChange(e)} name="name" label="Enter Name"/>
-            <TextField variant="standard" onChange={(e) => onSignupChange(e)} name="email" label="Enter Email"/>
-            <TextField variant="standard" onChange={(e) => onSignupChange(e)} name="password" label="Enter Password"/>
+            <TextField variant="standard" required onChange={(e) => onSignupChange(e)} name="name" label="Enter Name"/>
+            <TextField variant="standard" required onChange={(e) => onSignupChange(e)} name="email" label="Enter Email"/>
+            <TextField variant="standard" required onChange={(e) => onSignupChange(e)} name="password" label="Enter Password"/>
             <TextField variant="standard" onChange={(e) => onSignupChange(e)} name="education" label="Enter Education"/>
             <TextField variant="standard" onChange={(e) => onSignupChange(e)} name="interests" label="Enter Interests"/>
 

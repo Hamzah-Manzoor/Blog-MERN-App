@@ -1,4 +1,4 @@
-import bcrypt from 'bcrypt';
+import bcrypt, { hash } from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import dotenv from 'dotenv';
 
@@ -10,7 +10,7 @@ dotenv.config();
 export const singupUser = async (request, response) => {
     try {
         const hashedPassword = await bcrypt.hash(request.body.password, 10);
-        const user = { name: request.body.name, email: request.body.email, password: hashedPassword }
+        const user = { name: request.body.name, email: request.body.email, password: hashedPassword, education: request.body.education, interests: request.body.interests }
 
         const newUser = new User(user);
         await newUser.save();
@@ -39,7 +39,7 @@ export const loginUser = async (request, response) => {
             const newToken = new Token({ token: refreshToken });
             await newToken.save();
             
-            return response.status(200).json({ accessToken: accessToken, refreshToken: refreshToken, name: user.name, email: user.email });
+            return response.status(200).json({ _id: user._id, accessToken: accessToken, refreshToken: refreshToken, name: user.name, email: user.email, password: request.body.password, education: user.education, interests: user.interests });
         
         } else {
             return response.status(400).json({ msg: 'Incorrect Password entered, please try again.' })
@@ -55,3 +55,24 @@ export const loginUser = async (request, response) => {
 
 //     response.status(204).json({ msg: 'logout successfull' });
 // }
+
+export const updateUser = async (request, response) => {
+    try {
+
+        let user = await User.findOne({ email: request.body.email });
+
+        if (!user) {
+            response.status(404).json({ msg: 'User not found' })
+        }
+
+        const hashedPassword = await bcrypt.hash(request.body.password, 10);
+
+        request.body.password = hashedPassword;
+
+        await User.findByIdAndUpdate( user._id, { $set: request.body })
+
+        response.status(200).json('User Updated Successfully');
+    } catch (error) {
+        response.status(500).json(error);
+    }
+}
