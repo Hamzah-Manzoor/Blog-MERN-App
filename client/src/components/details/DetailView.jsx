@@ -100,9 +100,9 @@ const DetailView = () => {
             <Heading>{post.title}</Heading>
 
             <Author>
-                <Link to={`/?username=${post.email}`} style={{ textDecoration: 'none', color: 'inherit' }}>
+                <a href={`mailto:${post.email}`} style={{ textDecoration: 'none', color: 'inherit' }}>
                     <Typography>Author: <span style={{fontWeight: 600}}>{post.email}</span></Typography>
-                </Link>
+                </a>
                 <Typography style={{marginLeft: 'auto'}}>{new Date(post.createdDate).toDateString()}</Typography>
             </Author>
 
