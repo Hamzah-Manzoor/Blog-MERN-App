@@ -41,6 +41,7 @@ const processResponse = (response) => {
     if (response?.status === 200) {
         return { isSuccess: true, data: response.data }
     } else {
+        console.log("Got a negative from server response");
         return {
             isFailure: true,
             status: response?.status,
@@ -113,7 +114,7 @@ for (const [key, value] of Object.entries(SERVICE_URLS)) {
         axiosInstance({
             method: value.method,
             url: value.url,
-            data: value.method === 'DELETE' ? '' : body,
+            data: value.method === 'DELETE' ? {} : body,
             responseType: value.responseType,
             headers: {
                 authorization: getAccessToken(),

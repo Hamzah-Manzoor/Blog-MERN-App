@@ -39,15 +39,16 @@ const Comments = ({ post }) => {
     const [comment, setComment] = useState(initialValue);
     const [comments, setComments] = useState([]);
     const [toggle, setToggle] = useState(false);
+    const [rendered, setRendered] = useState(false);
 
     const { account } = useContext(DataContext);
 
     useEffect(() => {
         const getData = async () => {
-            const response = await API.getAllComments(post._id);
-            if (response.isSuccess) {
-                setComments(response.data);
-            }
+                const response = await API.getAllComments(post._id);
+                if (response.isSuccess) {
+                    setComments(response.data);
+                }
         }
         getData();
     }, [toggle, post]);
@@ -62,6 +63,13 @@ const Comments = ({ post }) => {
         });
     }
 
+    const newComment = async() => {
+        const response = await API.getAllComments(post._id);
+        if (response.isSuccess) {
+            setComments(response.data);
+        }
+    }
+
     const addComment = async() => {
         let response = await API.newComment(comment);
         if (response.isSuccess) {
@@ -70,6 +78,7 @@ const Comments = ({ post }) => {
         
         // setToggle(prev => !prev);
         setToggle(prevState => !prevState);
+        // newComment();
     }
     
     return (
@@ -77,7 +86,7 @@ const Comments = ({ post }) => {
             <Container>
                 <Image src={url} alt="dp" />   
                 <StyledTextArea 
-                    rowsMin={5}  
+                    rows={5}
                     placeholder="Share your thoughts!"
                     onChange={(e) => handleChange(e)} 
                     value={comment.comments}

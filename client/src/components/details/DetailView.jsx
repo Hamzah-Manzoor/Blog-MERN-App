@@ -8,7 +8,6 @@ import { API } from '../../service/api';
 
 import { DataContext } from '../../context/DataProvider';
 
-// components
 import Comments from './comments/Comments';
 
 const Container = styled(Box)(({ theme }) => ({
