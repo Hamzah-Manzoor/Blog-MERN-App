@@ -113,7 +113,8 @@ const Login = ({ isUserAuthenticated }) => {
     }
 
     let response = await API.userLogin(login);
-    if (response.isSuccess) {
+
+    if (response?.isSuccess) {
         showError('');
 
         sessionStorage.setItem('accessToken', `Bearer ${response.data.accessToken}`);
@@ -130,17 +131,17 @@ const Login = ({ isUserAuthenticated }) => {
 
   const signupUser = async () => {
 
-    if (signup.name) {
+    if (signup.name === "") {
       alert("Please Enter Name for Signup");
       return;
     }
 
-    if (signup.email) {
+    if (signup.email === "") {
       alert("Please Enter Email for Signup");
       return;
     }
 
-    if (signup.password) {
+    if (signup.password === "") {
       alert("Please Enter Password for Signup");
       return;
     }
