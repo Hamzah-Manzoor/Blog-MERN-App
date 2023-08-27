@@ -32,6 +32,7 @@ axiosInstance.interceptors.response.use(
         return processResponse(response);
     },
     function(error) {
+        alert("Server not responding, please try again later!")
         return Promise.reject(ProcessError(error));
     }
 )
