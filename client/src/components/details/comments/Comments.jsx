@@ -63,12 +63,12 @@ const Comments = ({ post }) => {
         });
     }
 
-    const newComment = async() => {
-        const response = await API.getAllComments(post._id);
-        if (response.isSuccess) {
-            setComments(response.data);
-        }
-    }
+    // const newComment = async() => {
+    //     const response = await API.getAllComments(post._id);
+    //     if (response.isSuccess) {
+    //         setComments(response.data);
+    //     }
+    // }
 
     const addComment = async() => {
         let response = await API.newComment(comment);

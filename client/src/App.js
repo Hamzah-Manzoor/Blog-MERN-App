@@ -8,7 +8,7 @@ import DataProvider from './context/DataProvider';
 import Update from './components/create/Update';
 import DetailView from './components/details/DetailView';
 import EditProfile from './components/editProfile/EditProfile';
-import Contact from './components/contact/Contact';
+import MyBlogs from './components/myBlogs/MyBlogs';
 import { BrowserRouter, Routes, Route, Outlet, Navigate } from 'react-router-dom';
 
 const PrivateRoute = ({ isAuthenticated, ...props }) => {
@@ -45,6 +45,10 @@ function App() {
               <Route path='/details/:id' element={<DetailView />} />
             </Route>
 
+            <Route path='/myBlogs/details/:id' element={<PrivateRoute isAuthenticated={isAuthenticated} />} >
+              <Route path='/myBlogs/details/:id' element={<DetailView />} />
+            </Route>
+
             <Route path='/update/:id' element={<PrivateRoute isAuthenticated={isAuthenticated} />} >
               <Route path='/update/:id' element={<Update />} />
             </Route>
@@ -53,8 +57,8 @@ function App() {
               <Route path='/editProfile' element={<EditProfile />} />
             </Route>
 
-            <Route path='/contact' element={<PrivateRoute isAuthenticated={isAuthenticated} />} >
-              <Route path='/contact' element={<Contact />} />
+            <Route path='/myBlogs' element={<PrivateRoute isAuthenticated={isAuthenticated} />} >
+              <Route path='/myBlogs' element={<MyBlogs />} />
             </Route>
 
           </Routes>

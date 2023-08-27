@@ -28,7 +28,7 @@ const Header = () => {
             <Container>
                 <Link to='/'>HOME</Link>
                 <Link to='/editProfile'>EDIT PROFILE</Link>
-                <Link to='/contact'>CONTACT</Link>
+                <Link to='/myBlogs'>MY BLOGS</Link>
                 <Link to='/login'>LOGOUT</Link>
             </Container>
         </Component>
