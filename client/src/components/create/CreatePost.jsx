@@ -63,8 +63,11 @@ const initialPost = {
     description: '',
     picture: '',
     email: '',
+    name: '',
     categories: '',
-    createdDate: new Date()
+    createdDate: new Date(),
+    likedBy: [],
+    clapedBy: []
 }
 
 const CreatePost = () => {

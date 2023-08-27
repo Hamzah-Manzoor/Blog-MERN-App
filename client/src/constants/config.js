@@ -33,6 +33,8 @@ export const SERVICE_URLS = {
     deletePost: { url: 'delete', method: 'DELETE', query: true },
     getPostById: { url: 'post', method: 'GET', query: true },
     updatePost: { url: 'update', method: 'PUT', query: true },
+    likePost: { url: 'likePost', method: 'PUT', query: true },
+    clapPost: { url: 'clapPost', method: 'PUT', query: true },
 
     newComment: { url: '/comment/new', method: 'POST' },
     getAllComments: { url: 'comment', method: 'GET', query: true },

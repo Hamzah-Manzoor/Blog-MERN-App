@@ -41,7 +41,7 @@ const processResponse = (response) => {
     if (response?.status === 200) {
         return { isSuccess: true, data: response.data }
     } else {
-        console.log("Got a negative from server response");
+        // console.log("Got a negative from server response");
         return {
             isFailure: true,
             status: response?.status,

@@ -35,10 +35,10 @@ export const deletePost = async (request, response) => {
         const post = await Post.findById(request.params.id);
 
         if (!post) {
-            response.status(404).json({ msg: 'Post not found' })
+            response.status(404).json({ msg: 'Post not found' });
         }
         
-        await Post.findByIdAndDelete(request.params.id);
+        // await Post.findByIdAndDelete(request.params.id);
 
         response.status(200).json('Post Deleted Successfully');
     } catch (error) {
@@ -71,5 +71,72 @@ export const getAllPosts = async (request, response) => {
         response.status(200).json(posts);
     } catch (error) {
         response.status(500).json(error)
+    }
+}
+
+// export const likePost = async (postId, userEmails) => {
+    // try {
+    //     const post = await Post.findById(postId);
+    //     if (!post) {
+    //         console.log('Post not found');
+    //         return;
+    //     }
+
+    //     userEmails.forEach(userEmail => {
+    //         if (!post.likedBy.includes(userEmail)) {
+    //             post.likedBy.push(userEmail);
+    //         }
+    //     });
+
+    //     await post.save();
+    //     console.log('Post liked by users successfully');
+    // } catch (error) {
+    //     console.error('Error liking post:', error);
+    // }
+// }
+
+export const likePost = async (request, response) => {
+
+    // console.log(request.params.id);
+    // console.log(request.body.likedBy[0]);
+
+        //     userEmails.forEach(userEmail => {
+    //         if (!post.likedBy.includes(userEmail)) {
+    //             post.likedBy.push(userEmail);
+    //         }
+    //     });
+
+    //     await post.save();
+
+
+    try {
+        const post = await Post.findById(request.params.id);
+
+        if (!post) {
+            response.status(404).json({ msg: 'Post not found' })
+        }
+        
+        await Post.findByIdAndUpdate( request.params.id, { $set: request.body })
+
+        response.status(200).json('Post Updated Successfully');
+    } catch (error) {
+        response.status(500).json(error);
+    }
+}
+
+export const clapPost = async (request, response) => {
+
+    try {
+        const post = await Post.findById(request.params.id);
+
+        if (!post) {
+            response.status(404).json({ msg: 'Post not found' })
+        }
+        
+        await Post.findByIdAndUpdate( request.params.id, { $set: request.body })
+
+        response.status(200).json('Post Updated Successfully');
+    } catch (error) {
+        response.status(500).json(error);
     }
 }

@@ -29,6 +29,7 @@ const Header = () => {
                 <Link to='/'>HOME</Link>
                 <Link to='/editProfile'>EDIT PROFILE</Link>
                 <Link to='/myBlogs'>MY BLOGS</Link>
+                <Link to='/likedBlogs'>LIKED BLOGS</Link>
                 <Link to='/login'>LOGOUT</Link>
             </Container>
         </Component>

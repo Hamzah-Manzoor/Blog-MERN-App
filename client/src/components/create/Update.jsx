@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-import { Box, styled, TextareaAutosize, Button, FormControl, InputBase } from '@mui/material';
+import { Box, styled, TextareaAutosize, Button, FormControl, InputBase, FormLabel } from '@mui/material';
 import { AddCircle as Add } from '@mui/icons-material';
 import { useNavigate, useParams } from 'react-router-dom';
 
@@ -25,17 +25,33 @@ const StyledFormControl = styled(FormControl)`
     flex-direction: row;
 `;
 
-const InputTextField = styled(InputBase)`
-    flex: 1;
-    margin: 0 30px;
-    font-size: 25px;
+const GuideLabel = styled(FormLabel)`
+    width: 100%;
+    margin-top: 50px;
+    font-size: 12px;
 `;
 
-const StyledTextArea = styled(TextareaAutosize)`
+const InputCoverURL = styled(InputBase)`
+    flex: 1;
+    margin: 12px 30px 0px 0px;
+    font-size: 25px;
+    border: 1px solid gray;
+    padding: 5px;
     width: 100%;
-    border: none;
-    margin-top: 50px;
+`;
+
+const InputTitle = styled(InputBase)`
+    flex: 1;
+    margin: 12px 30px 0px 0px;
+    font-size: 25px;
+    border: 1px solid gray;
+    padding: 5px;
+`;
+
+const Textarea = styled(TextareaAutosize)`
+    width: 100%;
     font-size: 18px;
+    min-height: 40vh;
     &:focus-visible {
         outline: none;
     }
@@ -46,8 +62,11 @@ const initialPost = {
     description: '',
     picture: '',
     email: '',
+    name: '',
     categories: '',
-    createdDate: new Date()
+    createdDate: new Date(),
+    likedBy: [],
+    clapedBy: []
 }
 
 const Update = () => {
@@ -104,21 +123,21 @@ const Update = () => {
         <Container>
             <Image src={post.picture || url} alt="post" />
 
+            <InputCoverURL onChange={(e) => handleChange(e)} required name='picture' placeholder="Add Cover Photo's URL" />
+
             <StyledFormControl>
-                <label htmlFor="fileInput">
-                    <Add fontSize="large" color="action" />
-                </label>
                 <input
                     type="file"
                     id="fileInput"
                     style={{ display: "none" }}
                     onChange={(e) => setFile(e.target.files[0])}
                 />
-                <InputTextField onChange={(e) => handleChange(e)} value={post.title} name='title' placeholder="Title" />
+                <InputTitle onChange={(e) => handleChange(e)} value={post.title} name='title' placeholder="Title" />
                 <Button onClick={() => updateBlogPost()} variant="contained" color="primary">Update</Button>
             </StyledFormControl>
 
-            <StyledTextArea
+            <GuideLabel>Note: If you wish to add images, paste URL of images where you want to place them.</GuideLabel>
+            <Textarea
                 rows={5}
                 placeholder="Tell your story..."
                 name='description'

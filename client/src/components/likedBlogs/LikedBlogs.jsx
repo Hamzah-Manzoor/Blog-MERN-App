@@ -1,7 +1,7 @@
 import { Box, styled, Typography } from '@mui/material';
 import { React, useContext } from 'react';
 import Categories from '../home/Categories';
-import Posts from '../home/post/Posts';
+import Posts from '../home/post/LikedPosts';
 import { DataContext } from '../../context/DataProvider';
 
 import { Grid } from '@mui/material';
@@ -14,19 +14,8 @@ const Banner = styled(Box)`
     background-size: cover;
 `;
 
-const Wrapper = styled(Box)`
-    padding: 20px;
-    & > h3, & > h5 {
-        margin-top: 50px;
-    }
-`;
 
-const Text = styled(Typography)`
-    color: #878787;
-`;
-
-
-const MyBlogs = () => {
+const LikedBlogs = () => {
 
     const { account } = useContext(DataContext);
 
@@ -42,7 +31,7 @@ const MyBlogs = () => {
                 </Grid>
             </Grid>
         </Box>
-    );
+    )
 }
 
-export default MyBlogs;
+export default LikedBlogs

@@ -9,6 +9,7 @@ import Update from './components/create/Update';
 import DetailView from './components/details/DetailView';
 import EditProfile from './components/editProfile/EditProfile';
 import MyBlogs from './components/myBlogs/MyBlogs';
+import LikedBlogs from './components/likedBlogs/LikedBlogs';
 import { BrowserRouter, Routes, Route, Outlet, Navigate } from 'react-router-dom';
 
 const PrivateRoute = ({ isAuthenticated, ...props }) => {
@@ -49,6 +50,14 @@ function App() {
               <Route path='/myBlogs/details/:id' element={<DetailView />} />
             </Route>
 
+            <Route path='/likedBlogs/details/:id' element={<PrivateRoute isAuthenticated={isAuthenticated} />} >
+              <Route path='/likedBlogs/details/:id' element={<DetailView />} />
+            </Route>
+
+            <Route path='/myBlogs/details/:id' element={<PrivateRoute isAuthenticated={isAuthenticated} />} >
+              <Route path='/myBlogs/details/:id' element={<DetailView />} />
+            </Route>
+
             <Route path='/update/:id' element={<PrivateRoute isAuthenticated={isAuthenticated} />} >
               <Route path='/update/:id' element={<Update />} />
             </Route>
@@ -59,6 +68,10 @@ function App() {
 
             <Route path='/myBlogs' element={<PrivateRoute isAuthenticated={isAuthenticated} />} >
               <Route path='/myBlogs' element={<MyBlogs />} />
+            </Route>
+
+            <Route path='/likedBlogs' element={<PrivateRoute isAuthenticated={isAuthenticated} />} >
+              <Route path='/likedBlogs' element={<LikedBlogs />} />
             </Route>
 
           </Routes>
