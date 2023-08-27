@@ -71,6 +71,10 @@ const Comments = ({ post }) => {
     // }
 
     const addComment = async() => {
+        if (comment.comments === "") {
+            alert("Please add some text for your comment");
+            return;
+        }
         let response = await API.newComment(comment);
         if (response.isSuccess) {
             setComment(initialValue);
@@ -89,6 +93,7 @@ const Comments = ({ post }) => {
                     rows={5}
                     placeholder="Share your thoughts!"
                     onChange={(e) => handleChange(e)} 
+                    name='comments'
                     value={comment.comments}
                 />
                 <Button 
