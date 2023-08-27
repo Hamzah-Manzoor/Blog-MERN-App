@@ -64,7 +64,6 @@ const ProcessError = async (error) => {
                 alert(error.response.data.msg);
             //  console.log(error.response);
             }
-            // return;
             console.log("ERROR IN RESPONSE: ", error.toJSON());
             return {
                 isError: true,
