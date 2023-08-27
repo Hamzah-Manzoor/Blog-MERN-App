@@ -107,7 +107,16 @@ const DetailView = () => {
                 <Typography style={{marginLeft: 'auto'}}>{new Date(post.createdDate).toDateString()}</Typography>
             </Author>
 
-            <Description>{post.description}</Description>
+            {/* <Description>{post.description}</Description> */}
+            <Description>        
+                {
+                    parsedDescription.split('__URL_').map((text, index) => (
+                    <React.Fragment key={index}>
+                        {text}
+                        {index !== 0 && urls[index - 1] && <img src={urls[index - 1]} alt={`Image ${index}`} />}
+                    </React.Fragment>))
+                }
+            </Description>
             <Comments post={post} />
         </Container>
     )
