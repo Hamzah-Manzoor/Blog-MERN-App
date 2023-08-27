@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-import { Grid, Box, TextField, styled } from '@mui/material';
+import { Grid, Box, TextField, styled, Typography } from '@mui/material';
 import { Link, useSearchParams } from 'react-router-dom';
 
 
@@ -33,7 +33,33 @@ const Posts = ({ userEmail }) => {
         const fetchData = async () => { 
             let response = await API.getAllPosts({ category : category || '' });
             if (response.isSuccess) {
-                getPosts(response.data);
+                // getPosts(response.data);
+
+
+                if (userEmail) {
+                    const newLikedState = response.data.map(post => {
+                        if (userEmail === post.email) {
+                            return true;
+                        }
+                        return false;
+                    });
+    
+                    const anyLiked = newLikedState.some(value => value);
+    
+                    if (!anyLiked) {
+                        getPosts([]);
+                    } else {
+                        getPosts(response.data);
+                    }
+                } else {
+                    getPosts(response.data);
+                }
+
+
+
+
+
+
             }
         }
         fetchData();
@@ -109,8 +135,8 @@ const Posts = ({ userEmail }) => {
 
                 )) : 
                 (
-                    <Box style={{color: '878787', margin: '30px 80px', fontSize: 18}}>
-                        No data is available for selected category
+                    <Box style={{color: '878787', margin: 'auto auto 200px auto', fontSize: '30px', fontWeight: 700}}>
+                        No Blog Posted Yet!
                     </Box>
                 )
             }
