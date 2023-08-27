@@ -101,6 +101,17 @@ const Login = ({ isUserAuthenticated }) => {
   }
 
   const loginUser = async () => {
+
+    if (login.email === ""){
+      alert("Please enter email for login");
+      return;
+    }
+
+    if (login.password === ""){
+      alert("Please enter password for login");
+      return;
+    }
+
     let response = await API.userLogin(login);
     if (response.isSuccess) {
         showError('');
@@ -118,6 +129,21 @@ const Login = ({ isUserAuthenticated }) => {
   }
 
   const signupUser = async () => {
+
+    if (signup.name) {
+      alert("Please Enter Name for Signup");
+      return;
+    }
+
+    if (signup.email) {
+      alert("Please Enter Email for Signup");
+      return;
+    }
+
+    if (signup.password) {
+      alert("Please Enter Password for Signup");
+      return;
+    }
     
     let response = await API.userSignup(signup);
 

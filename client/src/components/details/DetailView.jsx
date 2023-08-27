@@ -1,4 +1,4 @@
-import { useState, useEffect, useContext } from 'react';
+import { useState, useEffect, useContext, React } from 'react';
 
 import { Box, Typography, styled } from '@mui/material';
 import { Delete, Edit } from '@mui/icons-material';
@@ -10,6 +10,20 @@ import { DataContext } from '../../context/DataProvider';
 
 import Comments from './comments/Comments';
 
+const parseDescription = (description) => {
+    // Regular expression to identify URLs
+    const urlRegex = /(https?:\/\/[^\s]+)/g;
+  
+    // Replace URLs with placeholders and store URL list
+    let urls = [];
+    const parsedDescription = description.replace(urlRegex, (url) => {
+      urls.push(url);
+      return `__URL_${urls.length - 1}__`;
+    });
+  
+    return { parsedDescription, urls };
+  };
+
 const Container = styled(Box)(({ theme }) => ({
     margin: '50px 100px',
     [theme.breakpoints.down('md')]: {
@@ -20,6 +34,12 @@ const Container = styled(Box)(({ theme }) => ({
 const Image = styled('img')({
     width: '100%',
     height: '50vh',
+    objectFit: 'cover'
+});
+
+const BlogImage = styled('img')({
+    width: '100%',
+    maxHeight: '100vh',
     objectFit: 'cover'
 });
 
@@ -47,6 +67,14 @@ const Heading = styled(Typography)`
 
 const Description = styled(Typography)`
     word-break: break-word;
+    margin: 10px 0;
+
+    img {
+        display: block;
+        max-width: 100%;
+        height: auto;
+        margin: 10px auto;
+    }
 `;
 
 const Author = styled(Box)(({ theme }) => ({
@@ -76,6 +104,8 @@ const DetailView = () => {
         }
         fetchData();
     }, []);
+
+    const { parsedDescription, urls } = post.description ? parseDescription(post.description) : { parsedDescription: "", urls: [] };
 
     const deleteBlog = async () => {  
         let responce = await API.deletePost(post._id);
@@ -110,11 +140,18 @@ const DetailView = () => {
             {/* <Description>{post.description}</Description> */}
             <Description>        
                 {
-                    parsedDescription.split('__URL_').map((text, index) => (
-                    <React.Fragment key={index}>
-                        {text}
-                        {index !== 0 && urls[index - 1] && <img src={urls[index - 1]} alt={`Image ${index}`} />}
-                    </React.Fragment>))
+                    parsedDescription.split('__URL_').map((content, index) => {
+                        const paragraphs = content.split('\n').filter(paragraph => paragraph.trim() !== '');
+
+                        return (
+                            <div key={index}>
+                                {paragraphs.map((paragraph, idx) => (
+                                    <p key={idx}>{paragraph}</p>
+                                ))}
+                                {urls[index] && <BlogImage src={urls[index]} alt={`Image ${index}`} />}
+                            </div>
+                        );
+                    })
                 }
             </Description>
             <Comments post={post} />
