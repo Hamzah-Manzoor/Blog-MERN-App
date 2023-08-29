@@ -16,7 +16,7 @@ Blogger is a web application that allows users to create, read, update and delet
 
 ## Technologies
 
-- The front-end of the app is built with React.js and Bootstrap.
+- The front-end of the app is built with React.js and Material UI.
 - The back-end of the app is built with Node.js, Express.js and MongoDB.
 - The app uses JSON Web Token (JWT) for authentication and authorization.
 
