@@ -60,6 +60,33 @@ const processResponse = (response) => {
 const ProcessError = async (error) => {
     if (error.response) {
 
+
+        if (error.response?.status === 433) {
+            const { url, config } = error.response;
+            console.log(error);
+            try {
+                let response = await API.getRefreshToken({ token: getRefreshToken() });
+                if (response.isSuccess) {
+                    sessionStorage.clear();
+                    setAccessToken(response.data.accessToken);
+
+                    const requestData = error.toJSON();
+
+                    let response1 = await axios({
+                        method: requestData.config.method,
+                        url: requestData.config.baseURL + requestData.config.url,
+                        headers: { "content-type": "application/json", "authorization": getAccessToken() },
+                        params: requestData.config.params
+                    });
+                }
+            } catch (error) {
+                return Promise.reject(error)
+            }
+        }
+
+
+
+
             if (error.response?.status === 400) {
                 alert(error.response.data.msg);
             //  console.log(error.response);

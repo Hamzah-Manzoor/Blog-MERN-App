@@ -86,7 +86,7 @@ const About = () => {
             <Box>
                 <Wrapper>
                     <TextField variant="standard" value={userInfo.name} onChange={(e) => onValueChange(e)} name="name" label="Enter Name"/>
-                    <TextField variant="standard" value={userInfo.email} onChange={(e) => onValueChange(e)} name="email" label="Enter Email"/>
+                    {/* <TextField variant="standard" value={userInfo.email} onChange={(e) => onValueChange(e)} name="email" label="Enter Email"/> */}
                     <TextField variant="standard" value={userInfo.password} onChange={(e) => onValueChange(e)} name="password" label="Enter Password"/>
                     <TextField variant="standard" value={userInfo.education} onChange={(e) => onValueChange(e)} name="education" label="Enter Education"/>
                     <TextField variant="standard" value={userInfo.interests} onChange={(e) => onValueChange(e)} name="interests" label="Enter Interests"/>

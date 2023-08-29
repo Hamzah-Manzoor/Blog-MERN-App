@@ -123,15 +123,15 @@ const Update = () => {
         <Container>
             <Image src={post.picture || url} alt="post" />
 
-            <InputCoverURL onChange={(e) => handleChange(e)} required name='picture' placeholder="Add Cover Photo's URL" />
+            <InputCoverURL onChange={(e) => handleChange(e)} value={post.picture} required name='picture' placeholder="Add Cover Photo's URL" />
 
             <StyledFormControl>
-                <input
+                {/* <input
                     type="file"
                     id="fileInput"
                     style={{ display: "none" }}
                     onChange={(e) => setFile(e.target.files[0])}
-                />
+                /> */}
                 <InputTitle onChange={(e) => handleChange(e)} value={post.title} name='title' placeholder="Title" />
                 <Button onClick={() => updateBlogPost()} variant="contained" color="primary">Update</Button>
             </StyledFormControl>

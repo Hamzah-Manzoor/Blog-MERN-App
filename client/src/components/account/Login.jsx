@@ -148,7 +148,7 @@ const Login = ({ isUserAuthenticated }) => {
     
     let response = await API.userSignup(signup);
 
-    if (response.isSuccess) {
+    if (response?.isSuccess) {
         showError('');
         setSignup(signupValues);
         toggleAccount('login');

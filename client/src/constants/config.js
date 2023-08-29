@@ -25,8 +25,10 @@ export const SERVICE_URLS = {
     userLogin: { url: '/login', method: 'POST' },
     userSignup: { url: '/signup', method: 'POST' },
     updateUser: { url: '/updateUser', method: 'PUT' },
-    // getRefreshToken: { url: '/token', method: 'POST' },
-    uploadFile: { url: '/file/upload', method: 'POST' },
+
+    getRefreshToken: { url: '/token', method: 'POST' },
+
+    // uploadFile: { url: '/file/upload', method: 'POST' },
 
     getAllPosts: { url: '/posts', method: 'GET', params: true },
     createPost: { url: 'create', method: 'POST' },

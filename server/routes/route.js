@@ -7,7 +7,6 @@ import { newComment, getComments, getComment, deleteComment } from '../controlle
 
 
 import { singupUser, loginUser, updateUser } from '../controller/user-controller.js';
-// import { loginUser, singupUser, logoutUser } from '../controller/user-controller.js';
 
 
 import { authenticateToken, createNewToken } from '../controller/jwt-controller.js';
@@ -18,14 +17,13 @@ const router = express.Router();
 
 router.post('/login', loginUser);
 router.post('/signup', singupUser);
-router.post('/updateUser', authenticateToken, updateUser);
-// router.post('/logout', logoutUser);
-
-// router.post('/token', createNewToken);
+router.put('/updateUser', authenticateToken, updateUser);
 
 router.post('/create', authenticateToken, createPost);
 router.put('/update/:id', authenticateToken, updatePost);
 router.delete('/delete/:id', authenticateToken, deletePost);
+
+router.post('/token', createNewToken);
 
 router.put('/likePost/:id', authenticateToken, likePost);
 router.put('/clapPost/:id', authenticateToken, clapPost);
@@ -34,7 +32,6 @@ router.get('/post/:id', authenticateToken, getPost);
 router.get('/posts', authenticateToken, getAllPosts);
 
 router.post('/file/upload', upload.single('file'), uploadImage);
-// router.get('/file/:filename', getImage);
 
 router.post('/comment/new', authenticateToken, newComment);
 router.get('/comment/:id', authenticateToken, getComments);

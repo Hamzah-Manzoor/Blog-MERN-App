@@ -3,7 +3,7 @@ export const getAccessToken = () => {
 }
 
 export const getRefreshToken = () => {
-//     return sessionStorage.getItem('refreshToken');
+    return sessionStorage.getItem('refreshToken');
 }
 
 export const setAccessToken = (accessToken) => {

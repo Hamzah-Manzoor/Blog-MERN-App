@@ -57,6 +57,7 @@ export const loginUser = async (request, response) => {
 // }
 
 export const updateUser = async (request, response) => {
+
     try {
 
         let user = await User.findOne({ email: request.body.email });
