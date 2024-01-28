@@ -27,7 +27,7 @@ To run this app locally, you need to have Node.js and MongoDB installed on your 
 1. Clone this repository from GitHub: 
 
 ```
-git clone https://github.com/Hamzah-Manzoor/mern-blog-app.git
+git clone https://github.com/Hamzah-Manzoor/Blog-MERN-App.git
 ```
 
 2. Create a `.env` file in the server directory and add the following environment variables:
